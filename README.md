@@ -63,8 +63,8 @@ This project gives you
  - the original [twi.c](twi.org.c) from avr library 1.8.2 that comes with Arduino IDE 1.8.10 (January 2020).
  - my [twi.h](twi.h) with the time out added
  - my [twi.c](twi.c) with the time out added
- - a diff screenshot for `twi.h` [twi.h](twi.h.diff.png)
- - the diff screenshots for `twi.c` [twi.c 1](twi.c.diff1.png) [twi.c 2](twi.c.diff2.png)
+ - a diff screenshot for `twi.h`: [twi.h](twi.h.diff.png)
+ - the diff screenshots for `twi.c`: [twi.c 1](twi.c.diff1.png) and [twi.c 2](twi.c.diff2.png)
  
  ## Use
  
