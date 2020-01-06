@@ -3,12 +3,19 @@ Timeout added to Arduino TWI implementation
 
 ## Introduction
 The standard I2C functions on Arduino can hang.
-When `endTransaction` does not get an ack from the slave, the function does not return.
-This is a feature of the avr library 1.8.2 that comes with Arduino IDE 1.8.10 (January 2020).
+When `endTransaction()` does not get an _ack_ from the slave, the function does not return.
+This is an artefact ("bug"?) of the avr _library 1.8.2_ that comes with _Arduino IDE 1.8.10_ (January 2020).
 
 ## Problem
-The problem is in the implementation of the `twi` utility, more specifically the `twi_writeTo()` function.
-On my machine you find it as a subdirectory of the `Wire` library.
+In Arduino, the preferred I2C implementation is in the `Wire` module. 
+The `Wire` module builts on top of the `twi' module ("two wire interface").
+
+![stack](stack.png)
+
+The "hang" problem of `Wire.endTransaction()` is actually in the implementation of the `twi` module, 
+more specifically in the `twi_writeTo()` function.
+
+On my machine you find the `twi` files in the `utility` subdirectory of the `Wire` library:
 
 ```
 C:\Users\Maarten\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.2\libraries\Wire\src\utility
@@ -25,18 +32,18 @@ That function contains a while loop without time-out:
 
 ## Fix
 
-I have changed the infinit while loop to
+I have changed the infinite while loop to
 
 ```
   // wait for write operation to complete
-  now=micros();                                           // MAARTEN
+  now=micros();                                      // MAARTEN
   while(wait && (TWI_MTX == twi_state)){
-    if( micros()-now > twi_timeout_us ) return 5;         // MAARTEN
+    if( micros()-now > twi_timeout_us ) return 5;    // MAARTEN
     continue;
   }
 ```
 
-The variable `twi_timeout_us` is introduced by me by adding to the top of the file
+The variable `twi_timeout_us` is introduced by me by adding it to the top of the file
 
 ```
 static uint32_t twi_timeout_us = 100000L; // 100ms   // MAARTEN
