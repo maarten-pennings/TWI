@@ -21,6 +21,12 @@ On my machine you find the `twi` files in the `utility` subdirectory of the `Wir
 C:\Users\Maarten\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.2\libraries\Wire\src\utility
 ```
 
+It may also be here
+
+```
+C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility
+```
+
 That function contains a while loop without time-out:
 
 ```
