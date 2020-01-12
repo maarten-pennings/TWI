@@ -1,5 +1,5 @@
 # TWI
-Timeout added to Arduino TWI implementation
+Timeout added to Arduino I2C (Wire or actually twi) implementation.
 
 ## Introduction
 The standard I2C functions on Arduino can _hang_.
@@ -59,7 +59,7 @@ This project gives you a [utility](utility) directory with the patched `twi` mod
  - the patched [twi.h](utility/twi.h) with the time-out added
  - the patched [twi.c](utility/twi.c) with the time out added
  
-These diffs show the differences
+These images show the differences
  - for `twi.h`: [twi.h](twi.h.diff.png)
  - for `twi.c`: [twi.c 1](twi.c.diff1.png) and [twi.c 2](twi.c.diff2.png)
  
